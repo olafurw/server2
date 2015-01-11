@@ -88,7 +88,7 @@ void listener::handle_event(const epoll_event& event)
     std::string request;
     read_request(newsockfd, request);
 
-    request_parser parser(m_id, request);
+    request_parser parser(m_id, newsockfd, request);
     m_id++;
     
     if(parser.errors())

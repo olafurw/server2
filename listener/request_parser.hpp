@@ -9,7 +9,7 @@
 class request_parser
 {
 public:
-    request_parser(const int id, const std::string& request);
+    request_parser(const int id, const int socket, const std::string& request);
 
     std::string get_host() const;
     std::string get_path() const;
@@ -18,6 +18,7 @@ public:
     std::string get_post_data() const;
     std::string get_referer() const;
     unsigned int get_port() const;
+    int get_socket() const;
     time_t get_if_modified_since() const;
 
     bool errors() const;
@@ -44,6 +45,7 @@ private:
     std::string m_post_data;
     std::string m_referer;
     unsigned int m_port;
+    int m_socket;
     time_t m_if_modified_since;
     std::map<std::string, std::string> m_cookies;
 

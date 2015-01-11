@@ -12,6 +12,7 @@ add_executable(server
     server.cpp
     router.cpp
     listener.cpp
+    responder.cpp
     request_parser.cpp
     main.cpp
 )

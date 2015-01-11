@@ -33,11 +33,17 @@ void router::start()
         for(auto&& request : work)
         {
             config c = m_config->get(request.get_path());
-            std::cout << request.get_path() << "-" << c.path << std::endl;
+            
+            m_cb(request.get_socket(), "asdf");
         }
         
         work.clear();
     }
+}
+
+void router::data_callback(std::function<void(const int, std::string)> cb)
+{
+    m_cb = cb;
 }
 
 void router::on_request(request_parser&& r)

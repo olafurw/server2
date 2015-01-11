@@ -2,7 +2,7 @@
 
 #include "utils.hpp"
 
-request_parser::request_parser(const int id, const std::string& r)
+request_parser::request_parser(const int id, const int socket, const std::string& r)
 {
     m_error = 0;
     m_error_text = "";
@@ -13,6 +13,7 @@ request_parser::request_parser(const int id, const std::string& r)
     m_identifier = "";
     m_if_modified_since = 0;
     m_port = 80;
+    m_socket = socket;
 
     m_request_lines = utils::split_string(r, '\n');
     m_identifier = utils::sha256(std::to_string(id));
@@ -527,6 +528,11 @@ std::string request_parser::get_identifier() const
 unsigned int request_parser::get_port() const
 {
     return m_port;
+}
+
+int request_parser::get_socket() const
+{
+    return m_socket;
 }
 
 time_t request_parser::get_if_modified_since() const

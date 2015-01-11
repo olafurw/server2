@@ -20,6 +20,7 @@
 #include <vector>
 #include <mutex>
 #include <functional>
+#include <condition_variable>
 
 #include "request_parser.hpp"
 
@@ -36,6 +37,8 @@ public:
 private:
     void handle_events();
     void handle_event(const epoll_event& event);
+    
+    void handle_data();
     
     void read_request(int sockfd, std::string& buffer_str);
 
