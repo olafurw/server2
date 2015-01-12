@@ -1,5 +1,7 @@
 #include "router.hpp"
 
+#include "static_file.hpp"
+
 #include <iostream>
 
 router::router()
@@ -34,7 +36,9 @@ void router::start()
         {
             config c = m_config->get(request.get_path());
             
-            m_cb(request.get_socket(), "asdf");
+            static_file sf("/home/olafurw/server/www/" + c.path);
+            
+            m_cb(request.get_socket(), sf.m_data);
         }
         
         work.clear();

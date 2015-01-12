@@ -14,6 +14,8 @@ add_executable(server
     listener.cpp
     responder.cpp
     request_parser.cpp
+    static_file.cpp
+    response_header.cpp
     main.cpp
 )
 

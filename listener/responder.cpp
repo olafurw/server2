@@ -1,5 +1,7 @@
 #include "responder.hpp"
 
+#include "response_header.hpp"
+
 responder::responder()
 {
 
@@ -29,10 +31,12 @@ void responder::start()
             m_has_data = false;
         }
         
-        for(auto&& response : work)
+        for(auto&& r : work)
         {
-            write(response.m_socket, response.m_data.c_str(), response.m_data.size());
-            close(response.m_socket);
+            response_header resp(r.m_data);
+            
+            write(r.m_socket, resp.m_response.c_str(), resp.m_response.size());
+            close(r.m_socket);
         }
         
         work.clear();
